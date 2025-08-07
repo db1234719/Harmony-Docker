@@ -13,10 +13,10 @@ If you want to Host a Media server use this stack:
 [Harmony-Media](#Harmony-Media)
 
 if you are interested in Hosting a Website use this stack:
-[Harmony-Web](#Harmony-Web)
+[Harmony-Web](#Harmony-Web) (in progress)
 
 if you liketo Host diffrent usefull stuff that is essential use this stack:
-[Harmony-Sync](#Harmony-Sync)
+[Harmony-Sync](#Harmony-Sync) (in progress)
 
 ### Harmony-Media
 We have used Jellyfin as the main component to host our media to the world cause it has great media support and does everything we want and unlike plex it's free and open-source!
@@ -161,3 +161,12 @@ Now that those are done we will go at the bottom on root folders and add root fo
 
 Then we hit save changes and boom sonarr is done too!
 <img width="679" height="60" alt="image" src="https://github.com/user-attachments/assets/a6970fc8-89ea-4bac-ab0b-0f3cc07ad38a" />
+
+#### Radarr
+Do the exact same as you did for sonarr no different just the path you will use at the end will be the movies cause Radarr is for movies
+<img width="885" height="1023" alt="image" src="https://github.com/user-attachments/assets/303ac18f-db64-4777-976d-6b0198cf7da0" />
+<img width="884" height="1022" alt="image" src="https://github.com/user-attachments/assets/25b61bad-159b-487f-b03b-5d953c7930cf" />
+<img width="887" height="1024" alt="image" src="https://github.com/user-attachments/assets/289e6842-fec2-400a-97bc-d0cb19fe6db9" />
+
+And there you have it your beautiful Media Server!
+I have skipped a lot and said a lot but at the end i hope you enjoy what you have created.
