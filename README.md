@@ -1,172 +1,181 @@
 # Harmony-Docker
-A repository with focus on Docker Compose yaml files that just works as intended (and is reproducable) so you enjoy Self-Hosting more!
 
-Fun Fact: when i was creating this repository i installed and Archlinux virtual machine inside my Archlinux machine to just test things out and it's a personal thing but i recommend Archlinux cause it's minimal and a lot more stable that you think! :)
+A repository focused on Docker Compose YAML files that *just work* as intended (and are reproducible), so you can enjoy self-hosting more!
 
-Caution:
-IPs used are examples
-Passwords need to be a lot more SECURE
-Please use our file structure for the best experience
+> **Fun Fact:**  
+> When I was creating this repository, I installed an Arch Linux virtual machine inside my Arch Linux machine just to test things out. It’s a personal preference, but I highly recommend Arch — it’s minimal and way more stable than people think. :)
+
+> **Caution:**  
+> - IPs used are **examples**  
+> - Passwords should be **much more secure**  
+> - Please follow our **file structure** for the best experience  
+
+---
 
 ## Harmony Files List
-If you want to Host a Media server use this stack:
-[Harmony-Media](#Harmony-Media)
 
-if you are interested in Hosting a Website use this stack:
-[Harmony-Web](#Harmony-Web) (in progress)
+If you want to host a media server, use this stack:  
+[**Harmony-Media**](#harmony-media)
 
-if you liketo Host diffrent usefull stuff that is essential use this stack:
-[Harmony-Sync](#Harmony-Sync) (in progress)
+If you’re interested in hosting a website, use this stack:  
+[**Harmony-Web**](#harmony-web) *(in progress)*
+
+If you’d like to host other useful self-hosting services, use this stack:  
+[**Harmony-Sync**](#harmony-sync) *(in progress)*
+
+---
 
 ### Harmony-Media
-We have used Jellyfin as the main component to host our media to the world cause it has great media support and does everything we want and unlike plex it's free and open-source!
-For Organizing our media library however we will use two piece of component from Servarr stack named Sonarr, Radarr which all it does is rename files to what the Jellyfin desire to show the library as intended!
 
-Please just read the yaml files there is instruction on how to do the docker side.
-After you did the docker part you may come back here to continue :)
+We’re using **Jellyfin** as the main component to host and stream media because it has excellent media support and — unlike Plex — it's free and open-source.
 
-### Befor we Continue you need this
-First installing the essentials and repository:
-(we assume you are on linux and have a user other than root with sudo capabilities)
+For organizing the media library, we use two components from the Servarr stack: **Sonarr** and **Radarr**. Their job is to rename and sort media files so Jellyfin displays the library the way it’s intended.
 
-Installing requierd packages
-Arch:
-```
+Just read the `.yaml` files — they include instructions for the Docker side. After you set that up, come back here to continue.
+
+---
+
+### Before We Continue — You Need This
+
+We assume you're on Linux, using a non-root user with `sudo` privileges.
+
+#### Install required packages
+
+**Arch Linux:**
+```bash
 sudo pacman -S git docker docker-compose
 ```
-Ubuntu:
-```
+
+**Ubuntu:**
+```bash
 sudo apt install git docker docker-compose
 ```
 
-Cloning the repository
-```
+#### Clone the repository:
+```bash
 git clone https://github.com/db1234719/Harmony-Docker.git
 ```
 
-Make sure docker is running
-```
+#### Make sure Docker is running:
+```bash
 sudo systemctl enable docker.service --now
 ```
 
-For every stack you want you should run this command:
-(Change the STACK to the Stack you want: Media, Web, Sync (is cases senstive))
-```
-sudo docker compose up -f ~/Harmony-Docker/Harmony-<STACK>.yaml
+#### Start a stack:
+Replace `<STACK>` with one of: `Media`, `Web`, or `Sync` (case-sensitive).
+```bash
+sudo docker compose -f ~/Harmony-Docker/Harmony-<STACK>.yaml up
 ```
 
-Now you will want to use this file structure for a simple and clean look for your media like this:
+---
+
+### Recommended File Structure
+
+To keep your media organized and clean, use this layout:
+
 ```
 home
--- user
------ data
--------- media
------------ movies
------------ shows
-```
-You have to do this commands:
-```
-mkdir ~/data ~/data/media ~/data/media/movies ~/data/media/shows
-```
-And give premissions to these users so there won't be any premission confilicts:
-```
-sudo groupadd media -g 321 && \
-sudo useradd abc -u 111 -g media
-```
-Then after we added that group and user we give them the data folder
-```
-sudo chown abc:media ~/data -R && \
-sudo chmod 775 ~/data -R
+└── user
+    └── data
+        └── media
+            ├── movies
+            └── shows
 ```
 
-A tip for some people first time
-To know your Local IP use this command:
+Create it like this:
+```bash
+mkdir -p ~/data/media/movies ~/data/media/shows
 ```
+
+Give proper permissions:
+```bash
+sudo groupadd media -g 321 && sudo useradd abc -u 111 -g media
+```
+
+Then assign ownership:
+```bash
+sudo chown abc:media ~/data -R && sudo chmod 775 ~/data -R
+```
+
+---
+
+### Pro Tip
+
+To check your **local IP address**, run:
+```bash
 ip a
 ```
 
-Because it's the first time you have started all of them we will do the first time setups one by one:
+---
 
-#### Jellyfin
-Open up a modern browser and paste your IP in the search bar with the port of your service which is Jellyfin:
+## Initial Setup Steps (First-Time Only)
 
+### Jellyfin
+
+Open a browser and go to:
 ```
-192.168.1.2:8096
-```
-
-Now you will see this:
-<img width="887" height="481" alt="jellyfin first page" src="https://github.com/user-attachments/assets/46396489-d248-436d-910d-0719453081a7" />
-Which wants you to choose a language we will use English for conssistancy and versatility
-After that click on Next
-
-Now you will need to create the Admin user of Jellyfin server (Choose a strong password please and it's case senstive!)
-first the username: admin
-then the password: secret (don't use this it's a tutorial)
-and the repeat of password: secret
-<img width="887" height="709" alt="jellyfin first time user creation" src="https://github.com/user-attachments/assets/ad6d6732-b008-49d7-8301-a3982707d7b8" />
-Then you click next
-
-Now it needs your media library which we recommend a lot that you use a good structure like this tutorial:
-We will add a shows and a movies like below
-You click the Add Media Library and add one with type movies and name movies and path the data media movies
-<img width="886" height="594" alt="image" src="https://github.com/user-attachments/assets/2a45356f-9170-4732-91ee-d2c4a6c50573" />
-And i recommend this option to be turned on so your media be more ready to move whenever you want to a new place!
-<img width="807" height="152" alt="image" src="https://github.com/user-attachments/assets/39bf0333-3b24-4f64-9cce-4e61e30d6d09" />
-
-after that we will do the same for shows:
-<img width="888" height="592" alt="image" src="https://github.com/user-attachments/assets/faabbae8-408c-4183-89d2-7fdd62642301" />
-
-you will have this as a result after you click ok:
-<img width="887" height="566" alt="image" src="https://github.com/user-attachments/assets/573b456b-f0c2-4b7e-8581-babe810d1973" />
-
-Then we click Next and leave the preferred metadata language at English:
-<img width="886" height="533" alt="image" src="https://github.com/user-attachments/assets/b59eb690-15f4-4a01-84cc-0b9af86f3e81" />
-
-After thats done and we click Next we have this two options:
-<img width="887" height="478" alt="image" src="https://github.com/user-attachments/assets/d38d7cd0-c505-48fa-93ff-f2f38a7c9350" />
-Which i recommend do not touch and Please leave the first one enabled cause it's crucial you may lose access to the server if disabled!
-
-And dada
-Our work with Jellyfin is done.
-<img width="889" height="363" alt="image" src="https://github.com/user-attachments/assets/885653cd-1785-41f6-b2ea-fdd4ead606d2" />
-
-#### sonarr
-now we go to sonarr to set it up!
-it's at this address:
-
-```
-192.168.1.2:8989
+http://192.168.1.2:8096
 ```
 
-This will be what we are going to be greeted with which we will set according to picture:
-authication methos: forms
-authication requierd: enable
-username: admin
-password: secret
-repeat password: secret
-<img width="888" height="946" alt="image" src="https://github.com/user-attachments/assets/66b5966c-ac5a-4866-9ba3-7498d3676288" />
-And we hit save
+You’ll see a language selection screen — choose **English** for consistency.
 
-Now we will use the left side settings -> media management and turn on the advanced options and rename episodes then we scroll to the bottom and enable unmonitor deleted episodes
-<img width="675" height="214" alt="image" src="https://github.com/user-attachments/assets/ba76bd23-5692-459d-b846-a8b62ed8e6c4" />
-<img width="669" height="147" alt="image" src="https://github.com/user-attachments/assets/0ff324cd-1390-4a07-9796-dd45a80d0ca4" />
+Then create your **Admin** account:
+- Username: `admin`
+- Password: `secret` *(choose a stronger one, this is a demo)*
 
+Next, you’ll be asked to set up your **media libraries**. Use paths like:
+- `/data/media/movies` for **Movies**
+- `/data/media/shows` for **TV Shows**
 
-after that at the premission which is very important we will enable set premissions and chmod folder will be on 775 and chown group 321
-<img width="656" height="541" alt="image" src="https://github.com/user-attachments/assets/7b95ef8c-5439-4468-81d4-68722a4c72e0" />
+We recommend enabling:
+- `Enable real-time monitoring`  
+- `Import metadata from path names`
 
-Now that those are done we will go at the bottom on root folders and add root folder like this:
-(we type the exact path for shows cause it's sonarr)
-<img width="876" height="818" alt="image" src="https://github.com/user-attachments/assets/73a4dbc6-8f28-4410-b57d-d88ff914e5b8" />
+Leave **metadata language** as English, and keep the "Allow remote connections" enabled for access. Done — Jellyfin is ready.
 
-Then we hit save changes and boom sonarr is done too!
-<img width="679" height="60" alt="image" src="https://github.com/user-attachments/assets/a6970fc8-89ea-4bac-ab0b-0f3cc07ad38a" />
+---
 
-#### Radarr
-Do the exact same as you did for sonarr no different just the path you will use at the end will be the movies cause Radarr is for movies
-<img width="885" height="1023" alt="image" src="https://github.com/user-attachments/assets/303ac18f-db64-4777-976d-6b0198cf7da0" />
-<img width="884" height="1022" alt="image" src="https://github.com/user-attachments/assets/25b61bad-159b-487f-b03b-5d953c7930cf" />
-<img width="887" height="1024" alt="image" src="https://github.com/user-attachments/assets/289e6842-fec2-400a-97bc-d0cb19fe6db9" />
+### Sonarr
 
-And there you have it your beautiful Media Server!
-I have skipped a lot and said a lot but at the end i hope you enjoy what you have created.
+Go to:
+```
+http://192.168.1.2:8989
+```
+
+Set authentication:
+- Auth method: `Forms`
+- Require auth: `Enabled`
+- Username: `admin`
+- Password: `secret`
+
+Then go to:
+- **Settings > Media Management**
+  - Enable **advanced settings**
+  - Turn on **Rename Episodes**
+  - Enable **Unmonitor deleted episodes**
+
+Under **Permissions**:
+- Set permissions: `Enabled`
+- Folder chmod: `775`
+- Group chown: `321`
+
+Then under **Root Folders**:
+- Add: `/data/media/shows`
+
+Done — Sonarr is ready.
+
+---
+
+### Radarr
+
+Same setup as Sonarr. Only difference:
+- Use `/data/media/movies` as the root folder  
+Because **Radarr is for movies**, while Sonarr is for TV shows.
+
+---
+
+## 🎉 Done!
+
+You now have a fully working self-hosted media server.
+
+I skipped some advanced things and included only the essentials. Hopefully, this helps you enjoy what you've created — clean, simple, and powerful.
