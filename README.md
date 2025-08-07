@@ -41,7 +41,7 @@ git clone https://github.com/db1234719/Harmony-Docker.git
 
 Make sure docker is running
 ```
-sudo systemctl enable docker.service --start-now
+sudo systemctl enable docker.service --now
 ```
 
 For every stack you want you should run this command:
