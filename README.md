@@ -92,5 +92,25 @@ and the repeat of password: secret
 Then you click next
 
 Now it needs your media library which we recommend a lot that you use a good structure like this tutorial:
-We will
+We will add a shows and a movies like below
+You click the Add Media Library and add one with type movies and name movies and path the data media movies
+<img width="886" height="594" alt="image" src="https://github.com/user-attachments/assets/2a45356f-9170-4732-91ee-d2c4a6c50573" />
+And i recommend this option to be turned on so your media be more ready to move whenever you want to a new place!
+<img width="807" height="152" alt="image" src="https://github.com/user-attachments/assets/39bf0333-3b24-4f64-9cce-4e61e30d6d09" />
 
+after that we will do the same for shows:
+<img width="888" height="592" alt="image" src="https://github.com/user-attachments/assets/faabbae8-408c-4183-89d2-7fdd62642301" />
+
+you will have this as a result after you click ok:
+<img width="887" height="566" alt="image" src="https://github.com/user-attachments/assets/573b456b-f0c2-4b7e-8581-babe810d1973" />
+
+Then we click Next and leave the preferred metadata language at English:
+<img width="886" height="533" alt="image" src="https://github.com/user-attachments/assets/b59eb690-15f4-4a01-84cc-0b9af86f3e81" />
+
+After thats done and we click Next we have this two options:
+<img width="887" height="478" alt="image" src="https://github.com/user-attachments/assets/d38d7cd0-c505-48fa-93ff-f2f38a7c9350" />
+Which i recommend do not touch and Please leave the first one enabled cause it's crucial you may lose access to the server if disabled!
+
+And tada
+Our work with Jellyfin is done.
+<img width="889" height="363" alt="image" src="https://github.com/user-attachments/assets/885653cd-1785-41f6-b2ea-fdd4ead606d2" />
