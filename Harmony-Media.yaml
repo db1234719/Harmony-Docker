@@ -1,0 +1,105 @@
+# This project is licensed under the MIT License. Use at your own risk — especially in production environments. Ensure security hardening and proper testing before deployment.
+
+# Check out my github this is at my profile at @db1234719
+# https://github.com/db1234719
+
+# it will use this stuff:
+# Jellyfin for main media streaming
+# Sonarr and Radarr for organizing the media library
+
+#optional Transmission if you do torrenting
+
+# replace /path/to/.. with absolute on your host machine
+
+services:
+  ##############
+  ## Jellyfin ##
+  ##############
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    hostname: jellyfin
+    devices:
+      - /dev/dri:/dev/dri # all of your gpus (keep the next lines for safety)
+      - /dev/dri/renderD128:/dev/dri/renderD128 # only one of your gpus based on your config may be like (integrated)
+      - /dev/dri/renderD129:/dev/dri/renderD129 # only one of your gpus based on your config may be like (dedicated)
+    environment:
+      - PUID=111
+      - PGID=321
+      - UMASK=002
+      - TZ=Asia/Tehran
+    volumes:
+      - /path/to/data/folder/jellyfin:/config # cannot change the path on the right (required for container to run properly)
+      - /path/to/data/media:/data/media # your media folder containing all of it for jellyfin
+    ports:
+      - 8096:8096
+      # - 8920:8920 #optional (not recommended)
+      # - 7359:7359/udp #optional (not recommended)
+      # - 1900:1900/udp #optional (not recommended)
+    network_mode: bridge
+    restart: unless-stopped
+
+  ############
+  ## Sonarr ##
+  ############
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    hostname: sonarr
+    environment:
+      - PUID=111
+      - PGID=321
+      - UMASK=002
+      - TZ=Asia/Tehran
+    volumes:
+      - /path/to/data/folder/sonarr:/config # cannot change the path on the right (required for container to run properly)
+      - /path/to/data/media:/data/media # your media folder containing all of it for sonarr to organize
+      # - /path/to/transmission/downloads:/transmission/downloads #optional if you do torrenting it is probably needed
+    ports:
+      - 8989:8989
+    network_mode: bridge
+    restart: unless-stopped
+
+  ############
+  ## Radarr ##
+  ############
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    hostname: radarr
+    environment:
+      - PUID=111
+      - PGID=321
+      - UMASK=002
+      - TZ=Asia/Tehran
+    volumes:
+      - /path/to/data/folder/radarr:/config # cannot change the path on the right (required for container to run properly)
+      - /path/to/data/media:/data/media # your media folder containing all of it for radarr to organize
+      # - /path/to/transmission/downloads:/transmission/downloads #optional if you do torrenting it is probably needed
+    ports:
+      - 7878:7878
+    network_mode: bridge
+    restart: unless-stopped
+##################
+## Transmission ##
+##################
+#  transmission:
+#    image: lscr.io/linuxserver/transmission:latest
+#    container_name: transmission
+#    hostname: transmission
+#    environment:
+#      - PUID=111
+#      - PGID=321
+#      - UMASK=002
+#      - TZ=Asia/Tehran
+#      - USER=admin
+#      - PASS=secret # change this immediately (do not use in production)
+#    volumes:
+#      - /path/to/data/folder/transmission:/config # cannot change the path on the right (required for container to run properly)
+#      - /path/to/transmission/downloads:/transmission/downloads #optional if you do torrenting it is probably needed
+#    ports:
+#      - 9091:9091
+#      - 51413:51413
+#      - 51413:51413/udp
+#    network_mode: bridge
+#    restart: unless-stopped
