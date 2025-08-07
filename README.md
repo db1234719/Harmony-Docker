@@ -3,6 +3,11 @@ A repository with focus on Docker Compose yaml files that just works as intended
 
 Fun Fact: when i was creating this repository i installed and Archlinux virtual machine inside my Archlinux machine to just test things out and it's a personal thing but i recommend Archlinux cause it's minimal and a lot more stable that you think! :)
 
+Caution:
+IPs used are examples
+Passwords need to be a lot more SECURE
+Please use our file structure for the best experience
+
 ## Harmony Files List
 If you want to Host a Media server use this stack:
 [Harmony-Media](#Harmony-Media)
@@ -70,14 +75,14 @@ To know your Local IP use this command:
 ip a
 ```
 
-
 Because it's the first time you have started all of them we will do the first time setups one by one:
 
 #### Jellyfin
 Open up a modern browser and paste your IP in the search bar with the port of your service which is Jellyfin:
-(IPs used are examples)
 
+```
 192.168.1.2:8096
+```
 
 Now you will see this:
 <img width="887" height="481" alt="jellyfin first page" src="https://github.com/user-attachments/assets/46396489-d248-436d-910d-0719453081a7" />
@@ -111,6 +116,38 @@ After thats done and we click Next we have this two options:
 <img width="887" height="478" alt="image" src="https://github.com/user-attachments/assets/d38d7cd0-c505-48fa-93ff-f2f38a7c9350" />
 Which i recommend do not touch and Please leave the first one enabled cause it's crucial you may lose access to the server if disabled!
 
-And tada
+And dada
 Our work with Jellyfin is done.
 <img width="889" height="363" alt="image" src="https://github.com/user-attachments/assets/885653cd-1785-41f6-b2ea-fdd4ead606d2" />
+
+#### sonarr
+now we go to sonarr to set it up!
+it's at this address:
+
+```
+192.168.1.2:8989
+```
+
+This will be what we are going to be greeted with which we will set according to picture:
+authication methos: forms
+authication requierd: enable
+username: admin
+password: secret
+repeat password: secret
+<img width="888" height="946" alt="image" src="https://github.com/user-attachments/assets/66b5966c-ac5a-4866-9ba3-7498d3676288" />
+And we hit save
+
+Now we will use the left side settings -> media management and turn on the advanced options and rename episodes then we scroll to the bottom and enable unmonitor deleted episodes
+<img width="675" height="214" alt="image" src="https://github.com/user-attachments/assets/ba76bd23-5692-459d-b846-a8b62ed8e6c4" />
+<img width="669" height="147" alt="image" src="https://github.com/user-attachments/assets/0ff324cd-1390-4a07-9796-dd45a80d0ca4" />
+
+
+after that at the premission which is very important we will enable set premissions and chmod folder will be on 775 and chown group 321
+<img width="656" height="541" alt="image" src="https://github.com/user-attachments/assets/7b95ef8c-5439-4468-81d4-68722a4c72e0" />
+
+Now that those are done we will go at the bottom on root folders and add root folder like this:
+(we type the exact path for shows cause it's sonarr)
+<img width="876" height="818" alt="image" src="https://github.com/user-attachments/assets/73a4dbc6-8f28-4410-b57d-d88ff914e5b8" />
+
+Then we hit save changes and boom sonarr is done too!
+<img width="679" height="60" alt="image" src="https://github.com/user-attachments/assets/a6970fc8-89ea-4bac-ab0b-0f3cc07ad38a" />
