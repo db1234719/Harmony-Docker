@@ -20,8 +20,38 @@ For Organizing our media library however we will use two piece of component from
 Please just read the yaml files there is instruction on how to do the docker side.
 After you did the docker part you may come back here to continue :)
 
-Because it's the first time you have started all of them we will do the first time setups one by one:
+### Befor we Continue you need this
+First installing the essentials and repository:
 (we assume you are on linux and have a user other than root with sudo capabilities)
+
+Installing requierd packages
+Arch:
+```
+sudo pacman -S git docker docker-compose
+```
+Ubuntu:
+```
+sudo apt install git docker docker-compose
+```
+
+Cloning the repository
+```
+git clone https://github.com/db1234719/Harmony-Docker.git
+```
+
+Make sure docker is running
+```
+sudo systemctl enable docker.service --start-now
+```
+
+For every stack you want you should run this command:
+(Change the STACK to the Stack you want: Media, Web, Sync (is cases senstive))
+```
+sudo docker compose up -f ~/Harmony-Docker/Harmony-<STACK>.yaml
+```
+
+
+Because it's the first time you have started all of them we will do the first time setups one by one:
 
 #### Jellyfin
 
