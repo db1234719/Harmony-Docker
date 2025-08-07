@@ -1,6 +1,8 @@
 # Harmony-Docker
 A repository with focus on Docker Compose yaml files that just works as intended (and is reproducable) so you enjoy Self-Hosting more!
 
+Fun Fact: when i was creating this repository i installed and Archlinux virtual machine inside my Archlinux machine to just test things out and it's a personal thing but i recommend Archlinux cause it's minimal and a lot more stable that you think! :)
+
 ## Harmony Files List
 If you want to Host a Media server use this stack:
 [Harmony-Media](#Harmony-Media)
@@ -19,5 +21,7 @@ Please just read the yaml files there is instruction on how to do the docker sid
 After you did the docker part you may come back here to continue :)
 
 Because it's the first time you have started all of them we will do the first time setups one by one:
+(we assume you are on linux and have a user other than root with sudo capabilities)
 
------Jellyfin-----
+#### Jellyfin
+
