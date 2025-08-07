@@ -24,7 +24,7 @@ services:
       - /dev/dri/renderD128:/dev/dri/renderD128 # only one of your gpus based on your config may be like (integrated)
       - /dev/dri/renderD129:/dev/dri/renderD129 # only one of your gpus based on your config may be like (dedicated)
     environment:
-      - PUID=111
+      - PUID=1111
       - PGID=321
       - UMASK=002
       - TZ=Asia/Tehran
@@ -47,7 +47,7 @@ services:
     container_name: sonarr
     hostname: sonarr
     environment:
-      - PUID=111
+      - PUID=1111
       - PGID=321
       - UMASK=002
       - TZ=Asia/Tehran
@@ -68,7 +68,7 @@ services:
     container_name: radarr
     hostname: radarr
     environment:
-      - PUID=111
+      - PUID=1111
       - PGID=321
       - UMASK=002
       - TZ=Asia/Tehran
@@ -80,6 +80,7 @@ services:
       - 7878:7878
     network_mode: bridge
     restart: unless-stopped
+
 ##################
 ## Transmission ##
 ##################
@@ -88,7 +89,7 @@ services:
 #    container_name: transmission
 #    hostname: transmission
 #    environment:
-#      - PUID=111
+#      - PUID=1111
 #      - PGID=321
 #      - UMASK=002
 #      - TZ=Asia/Tehran
