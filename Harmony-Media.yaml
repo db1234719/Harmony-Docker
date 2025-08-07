@@ -22,14 +22,13 @@ services:
     devices:
       - /dev/dri:/dev/dri # all of your gpus (keep the next lines for safety)
       - /dev/dri/renderD128:/dev/dri/renderD128 # only one of your gpus based on your config may be like (integrated)
-      - /dev/dri/renderD129:/dev/dri/renderD129 # only one of your gpus based on your config may be like (dedicated)
     environment:
       - PUID=1111
       - PGID=321
       - UMASK=002
       - TZ=Asia/Tehran
     volumes:
-      - /path/to/data/folder/jellyfin:/config # cannot change the path on the right (required for container to run properly)
+      - /path/to/data/jellyfin/config:/config # cannot change the path on the right (required for container to run properly)
       - /path/to/data/media:/data/media # your media folder containing all of it for jellyfin
     ports:
       - 8096:8096
@@ -52,7 +51,7 @@ services:
       - UMASK=002
       - TZ=Asia/Tehran
     volumes:
-      - /path/to/data/folder/sonarr:/config # cannot change the path on the right (required for container to run properly)
+      - /path/to/data/sonarr/config:/config # cannot change the path on the right (required for container to run properly)
       - /path/to/data/media:/data/media # your media folder containing all of it for sonarr to organize
       # - /path/to/transmission/downloads:/transmission/downloads #optional if you do torrenting it is probably needed
     ports:
@@ -73,7 +72,7 @@ services:
       - UMASK=002
       - TZ=Asia/Tehran
     volumes:
-      - /path/to/data/folder/radarr:/config # cannot change the path on the right (required for container to run properly)
+      - /path/to/data/radarr/config:/config # cannot change the path on the right (required for container to run properly)
       - /path/to/data/media:/data/media # your media folder containing all of it for radarr to organize
       # - /path/to/transmission/downloads:/transmission/downloads #optional if you do torrenting it is probably needed
     ports:
@@ -96,7 +95,7 @@ services:
 #      - USER=admin
 #      - PASS=secret # change this immediately (do not use in production)
 #    volumes:
-#      - /path/to/data/folder/transmission:/config # cannot change the path on the right (required for container to run properly)
+#      - /path/to/data/transmission/config:/config # cannot change the path on the right (required for container to run properly)
 #      - /path/to/transmission/downloads:/transmission/downloads #optional if you do torrenting it is probably needed
 #    ports:
 #      - 9091:9091
