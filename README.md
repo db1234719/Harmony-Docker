@@ -89,7 +89,7 @@ mkdir -p ~/data/media/movies ~/data/media/shows
 
 Give proper permissions:
 ```bash
-sudo groupadd media -g 321 && sudo useradd abc -u 111 -g media
+sudo groupadd media -g 321 && sudo useradd abc -u 1111 -g media
 ```
 
 Then assign ownership:
