@@ -64,9 +64,19 @@ home
 ----------- movies
 ----------- shows
 ```
-you have to do this commands:
+You have to do this commands:
 ```
 mkdir ~/data ~/data/media ~/data/media/movies ~/data/media/shows
+```
+And give premissions to these users so there won't be any premission confilicts:
+```
+sudo groupadd media -g 321 && \
+sudo useradd abc -u 111 -g media
+```
+Then after we added that group and user we give them the data folder
+```
+sudo chown abc:media ~/data -R && \
+sudo chmod 775 ~/data -R
 ```
 
 A tip for some people first time
