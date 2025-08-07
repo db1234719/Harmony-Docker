@@ -3,13 +3,13 @@ A repository with focus on Docker Compose yaml files that just works as intended
 
 ## Harmony Files List
 If you want to Host a Media server use this stack:
-(Harmony-Media)[#Harmony-Media]
+[Harmony-Media](#Harmony-Media)
 
 if you are interested in Hosting a Website use this stack:
-(Harmony-Web)[#Harmony-Web]
+[Harmony-Web](#Harmony-Web)
 
 if you liketo Host diffrent usefull stuff that is essential use this stack:
-(Harmony-Sync)[#Harmony-Sync]
+[Harmony-Sync](#Harmony-Sync)
 
 ### Harmony-Media
 We have used Jellyfin as the main component to host our media to the world cause it has great media support and does everything we want and unlike plex it's free and open-source!
