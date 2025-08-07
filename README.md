@@ -50,8 +50,47 @@ For every stack you want you should run this command:
 sudo docker compose up -f ~/Harmony-Docker/Harmony-<STACK>.yaml
 ```
 
+Now you will want to use this file structure for a simple and clean look for your media like this:
+```
+home
+-- user
+----- data
+-------- media
+----------- movies
+----------- shows
+```
+you have to do this commands:
+```
+mkdir ~/data ~/data/media ~/data/media/movies ~/data/media/shows
+```
+
+A tip for some people first time
+To know your Local IP use this command:
+```
+ip a
+```
+
 
 Because it's the first time you have started all of them we will do the first time setups one by one:
 
 #### Jellyfin
+Open up a modern browser and paste your IP in the search bar with the port of your service which is Jellyfin:
+(IPs used are examples)
+
+192.168.1.2:8096
+
+Now you will see this:
+<img width="887" height="481" alt="jellyfin first page" src="https://github.com/user-attachments/assets/46396489-d248-436d-910d-0719453081a7" />
+Which wants you to choose a language we will use English for conssistancy and versatility
+After that click on Next
+
+Now you will need to create the Admin user of Jellyfin server (Choose a strong password please and it's case senstive!)
+first the username: admin
+then the password: secret (don't use this it's a tutorial)
+and the repeat of password: secret
+<img width="887" height="709" alt="jellyfin first time user creation" src="https://github.com/user-attachments/assets/ad6d6732-b008-49d7-8301-a3982707d7b8" />
+Then you click next
+
+Now it needs your media library which we recommend a lot that you use a good structure like this tutorial:
+We will
 
